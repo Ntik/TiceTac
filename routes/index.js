@@ -31,7 +31,7 @@ var date = ['2018-11-20',
 
 
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('login');
 });
 
 // PAGE LOGIN
@@ -102,6 +102,8 @@ router.get('/homepage', function(req, res, next) {
 
 res.render('homepage')
 });
+
+
 
 
 // Remplissage de la base de donnée, une fois suffit

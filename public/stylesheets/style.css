@@ -1,8 +1,42 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  
 }
 
 a {
   color: #00B7FF;
+}
+
+body{
+  height: 100vh;
+/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#f9f9f9+0,75aad6+29,207cca+71,207cca+71,1e5799+100 */
+background: rgb(249,249,249); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(249,249,249,1) 0%, rgba(117,170,214,1) 29%, rgba(32,124,202,1) 71%, rgba(32,124,202,1) 71%, rgba(30,87,153,1) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  rgba(249,249,249,1) 0%,rgba(117,170,214,1) 29%,rgba(32,124,202,1) 71%,rgba(32,124,202,1) 71%,rgba(30,87,153,1) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  rgba(249,249,249,1) 0%,rgba(117,170,214,1) 29%,rgba(32,124,202,1) 71%,rgba(32,124,202,1) 71%,rgba(30,87,153,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9f9f9', endColorstr='#1e5799',GradientType=0 ); /* IE6-9 */
+
+
+text-align: center;
+}
+
+#connexion{
+  color: #D9727A;
+}
+
+#sign-in{
+  color:white;
+}
+#sign-up{
+  color:white;
+
+}
+footer{
+  color:white;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  line-height: 60px;;
 }
