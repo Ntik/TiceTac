@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <title>TicketTac</title>
+
+
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#"><img src="/images/train.png" width="30" height="30" class="d-inline-block align-center" alt="">
+             Ticketac
+            </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav mr-auto">
+          </ul>
+          <div class="d-flex justify-content-between">
+          <a class="navbar-item mr-3" id="connexion">
+            Connexion 
+          </a>
+          <a class="navbar-item">
+            My last trips
+          </a>
+        </div>
+        </div>
+      </nav>
+</head>
+<body>
+    <!-- FromTo -->
+    <div id="sign-in" class="container-fluid mt-5">
+        <div class="row justify-content-center mt-5">
+                <div class="formArea">
+        <h4 class="titleForm">One-Way ticket:</h4>
+
+    <form>
+        <div class="form-row align-items-center">
+          <div class="col-auto">
+            <label class="sr-only" for="inlineFormInput"></label>
+            <input type="text" class="form-control mb-2" id="inlineFormInput" placeholder="From: Paris, Marseille..">
+          </div>
+          <div class="col-auto">
+            <label class="sr-only" for="inlineFormInputGroup"></label>
+            <div class="input-group mb-2">
+              <div class="input-group-prepend">
+                
+              </div>
+              <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="To: Lille, Nantes..">
+            </div>
+          </div>
+          
+          <div class="col-auto">
+            <button type="submit" class="btn btn-danger">Go</button>
+          </div>
+        </div>
+      </form>
+        </div>
+    </div>
+</div>
+      
+    
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+
+</html>
