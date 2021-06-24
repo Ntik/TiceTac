@@ -1,3 +1,5 @@
+require('./models/connect');
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -6,9 +8,19 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var models = require('./routes/index')
+var models = require('./routes/index');
 
+var session = require('express-session');
 var app = express();
+
+app.set('trust proxy', 1)
+
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: true }
+}))
 
 
 // view engine setup
