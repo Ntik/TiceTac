@@ -2,8 +2,12 @@ var express = require('express');
 var router = express.Router();
 
 var mongoose = require('mongoose');
+
 var userModel = require('../models/users');
-var journeyModel = require('../models/journey')
+var journeyModel = require('../models/journey');
+
+const { route } = require('../app');
+const { Router } = require('express');
 
 
 
@@ -34,22 +38,21 @@ router.get('/', function(req, res, next) {
 router.get('/login', function(req, res, next) {
 
 
-  res.render('index', { title: 'Express' });
+  res.render('login');
 });
 
 // PAGE SIGN UP
 router.post('/sign-up', async function(req, res, next) {
 
-  // console.log('REQ BODY ALL ==== >>>>', req.body)
+  console.log('REQ BODY ALL ==== >>>>', req.body)
 
-  var alreadyExist = await userModel.findOne({ username: req.body.username });
+  var alreadyExist = await userModel.findOne({ email: req.body.email });
   // console.log('ALREADY EXIST =====> ', alreadyExist);
   
   if (alreadyExist !== null) {
     res.render('login', { isError: 'your account already exists, please sign in in the other form'})
-  } if (alreadyExist === null && req.body.username) {
+  } if (alreadyExist === null && req.body.email) {
       var newUser = new userModel({
-          username: req.body.username,
           firstname: req.body.firstname,
           lastname: req.body.lastname,
           email: req.body.email,
@@ -59,12 +62,12 @@ router.post('/sign-up', async function(req, res, next) {
     await newUser.save();
     
     req.session.user = { email: newUser.email, password: newUser.password };
-    req.session.username = { username: newUser.username}
+    req.session.lastname = { lastname: newUser.lastname}
 
-    res.redirect('/')
+    res.redirect('/homepage')
   }
 
-  res.render('index');
+  res.render('login');
 });
   
 
@@ -85,13 +88,19 @@ router.post('/sign-in', async function(req, res, next) {
   } else if (alreadyExist.email === req.body.email && alreadyExist.password === req.body.password) {
     
     req.session.user = { email: alreadyExist.email, password: alreadyExist.password };
-    req.session.username = { username: alreadyExist.username }
+    req.session.lastname = { lastname: alreadyExist.lastname }
 
-    res.redirect('/')
+    res.redirect('/homepage')
   }
 
 
-  res.render('index', { title: 'Express' });
+  res.render('login');
+});
+
+router.get('/homepage', function(req, res, next) {
+
+
+res.render('homepage')
 });
 
 
@@ -125,28 +134,36 @@ router.get('/save', async function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+router.get('/log-out', async function(req, res, next) {
+
+  req.session._id = null
+  req.session.lastname = null
+  
+  res.render('login')
+});
+
 
 // Cette route est juste une verification du Save.
 // Vous pouvez choisir de la garder ou la supprimer.
 
-// router.get('/result', function(req, res, next) {
+router.get('/result', function(req, res, next) {
 
-//   // Permet de savoir combien de trajets il y a par ville en base
-//   for(i=0; i<city.length; i++){
+  // Permet de savoir combien de trajets il y a par ville en base
+  for(i=0; i<city.length; i++){
 
-//     journeyModel.find( 
-//       { departure: city[i] } , //filtre
+    journeyModel.find( 
+      { departure: city[i] } , //filtre
   
-//       function (err, journey) {
+      function (err, journey) {
 
-//           console.log(`Nombre de trajets au départ de ${journey[0].departure} : `, journey.length);
-//       }
-//     )
+          console.log(`Nombre de trajets au départ de ${journey[0].departure} : `, journey.length);
+      }
+    )
 
-//   }
+  }
 
 
-//   res.render('index', { title: 'Express' });
-// });
+  res.render('index', { title: 'Express' });
+});
 
 module.exports = router;
