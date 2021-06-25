@@ -9,6 +9,7 @@ var journeyModel = require('../models/journey');
 const { route } = require('../app');
 const { Router } = require('express');
 
+var isError = '';
 
 
 var city = ['Paris',
@@ -36,19 +37,19 @@ router.get('/', function(req, res, next) {
 
 // PAGE LOGIN
 router.get('/login', function(req, res, next) {
-  res.render('login');
+  res.render('login', { isError });
 });
 
 // PAGE SIGN UP
 router.post('/sign-up', async function(req, res, next) {
 
   console.log('REQ BODY ALL ==== >>>>', req.body)
-
+  
   var alreadyExist = await userModel.findOne({ email: req.body.email });
   // console.log('ALREADY EXIST =====> ', alreadyExist);
   
   if (alreadyExist !== null) {
-    res.render('login', { isError: 'your account already exists, please sign in in the other form'})
+    res.render('login', { isError: 'your account already exists, please sign in in the other form' })
   } if (alreadyExist === null && req.body.email) {
       var newUser = new userModel({
           firstname: req.body.firstname,
@@ -74,10 +75,11 @@ router.post('/sign-in', async function(req, res, next) {
 
   var alreadyExist = await userModel.findOne({ email: req.body.email });
 
-  // console.log('REQ.BODY', req.body)
+  console.log('ALREADY EXIST',alreadyExist)
+  console.log('REQ.BODY', req.body)
   // console.log('alreadyEXIST ==== >>>>', alreadyExist)
-  // // console.log('alreadyEXIST.email ==== >>>>', alreadyExist.email)
-  // // console.log('alreadyEXIST.password ==== >>>>', alreadyExist.password)
+  // console.log('alreadyEXIST.email ==== >>>>', alreadyExist.email)
+  // console.log('alreadyEXIST.password ==== >>>>', alreadyExist.password)
 
   if (alreadyExist === null) {
     res.render('login', { isError: `your account doesn't exist, please use the sign up form` })
@@ -86,7 +88,7 @@ router.post('/sign-in', async function(req, res, next) {
   } else if (alreadyExist.email === req.body.email && alreadyExist.password === req.body.password) {
     
     req.session.user = { email: alreadyExist.email, password: alreadyExist.password };
-    req.session.lastname = { lastname: alreadyExist.lastname }
+    // req.session.lastname = { lastname: alreadyExist.lastname }
 
     res.redirect('/homepage')
   }
@@ -94,6 +96,8 @@ router.post('/sign-in', async function(req, res, next) {
 
   res.render('login');
 });
+
+
 
 router.get('/homepage', function(req, res, next) {
 
