@@ -61,7 +61,7 @@ router.post('/sign-up', async function(req, res, next) {
     await newUser.save();
     
     req.session.user = { email: newUser.email, password: newUser.password };
-    req.session.lastname = { lastname: newUser.lastname}
+    req.session.lastname = { lastname: newUser.lastname }
 
     res.redirect('/homepage')
   }
@@ -105,7 +105,19 @@ router.get('/homepage', function(req, res, next) {
 res.render('homepage')
 });
 
+router.post('/ticket', function(req, res, next) {
 
+res.render('error')
+
+
+res.render('ticket')
+
+});
+
+router.get('/myticket', function(req, res, next) {
+
+res.render('')
+})
 
 
 // Remplissage de la base de donnée, une fois suffit
