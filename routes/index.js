@@ -36,8 +36,6 @@ router.get('/', function(req, res, next) {
 
 // PAGE LOGIN
 router.get('/login', function(req, res, next) {
-
-
   res.render('login');
 });
 
